@@ -1,1 +1,3 @@
 # fnox secret key lives at ~/.config/fnox/tuist-search-age.txt
+# Kamal secrets are sourced from fnox at deploy time
+!.kamal/secrets
