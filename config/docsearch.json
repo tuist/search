@@ -1,11 +1,12 @@
 {
   "index_name": "tuist",
   "start_urls": [
-    "https://tuist.dev/en/docs",
-    "https://tuist.dev/ko/docs",
-    "https://tuist.dev/ja/docs",
-    "https://tuist.dev/es/docs",
-    "https://tuist.dev/ru/docs"
+    {
+      "url": "https://tuist.dev/(?P<locale>[a-z]{2})/docs(?:/.*)?",
+      "variables": {
+        "locale": ["en", "ko", "ja", "es", "ru"]
+      }
+    }
   ],
   "allowed_domains": ["tuist.dev"],
   "stop_urls": [
@@ -24,6 +25,21 @@
   "scrape_start_urls": true,
   "strip_chars": " .,;:#",
   "custom_settings": {
-    "attributesForFaceting": ["language"]
+    "field_definitions": [
+      {"name": "anchor", "type": "string", "optional": true},
+      {"name": "content", "type": "string", "optional": true},
+      {"name": "url", "type": "string", "facet": false},
+      {"name": "url_without_anchor", "type": "string", "facet": false, "optional": true},
+      {"name": "version", "type": ["string"], "facet": true, "optional": true},
+      {"name": "hierarchy.lvl0", "type": "string", "facet": true, "optional": true},
+      {"name": "hierarchy.lvl1", "type": "string", "facet": true, "optional": true},
+      {"name": "hierarchy.lvl2", "type": "string", "facet": true, "optional": true},
+      {"name": "hierarchy.lvl3", "type": "string", "facet": true, "optional": true},
+      {"name": "hierarchy.lvl4", "type": "string", "facet": true, "optional": true},
+      {"name": "hierarchy.lvl5", "type": "string", "facet": true, "optional": true},
+      {"name": "hierarchy.lvl6", "type": "string", "facet": true, "optional": true},
+      {"name": "locale", "type": "string", "facet": true},
+      {"name": "item_priority", "type": "int64"}
+    ]
   }
 }
