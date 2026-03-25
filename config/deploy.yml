@@ -14,6 +14,10 @@ proxy:
   ssl: true
   host: search.tuist.dev
   app_port: 8108
+  healthcheck:
+    path: /health
+    interval: 3
+    timeout: 5
 
 env:
   clear:
