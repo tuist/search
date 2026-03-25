@@ -20,30 +20,11 @@ run = "kamal app logs"
 
 [tasks."scrape"]
 description = "Trigger the DocSearch scraper on the server"
-run = """
-TYPESENSE_API_KEY=$(fnox get TYPESENSE_API_KEY)
-ssh root@91.99.179.13 \
-  "docker run --rm --network kamal \
-    -e TYPESENSE_API_KEY='$TYPESENSE_API_KEY' \
-    -e TYPESENSE_HOST=tuist-search \
-    -e TYPESENSE_PORT=8108 \
-    -e TYPESENSE_PROTOCOL=http \
-    -e CONFIG='$(cat config/docsearch.json)' \
-    typesense/docsearch-scraper"
-"""
+run = "bin/scrape"
 
 [tasks."scrape:cron"]
 description = "Install a daily cron job for the scraper on the server"
-run = """
-TYPESENSE_API_KEY=$(fnox get TYPESENSE_API_KEY)
-ssh root@91.99.179.13 "cat > /etc/cron.d/docsearch-scraper << 'CRON'
-0 4 * * * root docker run --rm --network kamal -e TYPESENSE_API_KEY='$TYPESENSE_API_KEY' -e TYPESENSE_HOST=tuist-search -e TYPESENSE_PORT=8108 -e TYPESENSE_PROTOCOL=http -e CONFIG=\\\"\\$(cat /opt/docsearch/config.json)\\\" typesense/docsearch-scraper >> /var/log/docsearch-scraper.log 2>&1
-CRON
-chmod 644 /etc/cron.d/docsearch-scraper
-mkdir -p /opt/docsearch"
-scp config/docsearch.json root@91.99.179.13:/opt/docsearch/config.json
-echo "Cron job installed — scraper will run daily at 04:00 UTC"
-"""
+run = "bin/scrape-cron"
 
 [tasks."secrets:edit"]
 description = "Edit encrypted secrets with fnox"

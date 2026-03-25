@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+
+TYPESENSE_API_KEY=$(fnox get TYPESENSE_API_KEY)
+TYPESENSE_CONTAINER=$(ssh root@91.99.179.13 "docker ps --filter label=service=tuist-search --filter label=role=web --format '{{.Names}}' | head -1")
+CONFIG=$(cat config/docsearch.json)
+
+ssh root@91.99.179.13 \
+  "docker run --rm --network kamal --dns 8.8.8.8 \
+    -e TYPESENSE_API_KEY='${TYPESENSE_API_KEY}' \
+    -e TYPESENSE_HOST=${TYPESENSE_CONTAINER} \
+    -e TYPESENSE_PORT=8108 \
+    -e TYPESENSE_PROTOCOL=http \
+    -e CONFIG='${CONFIG}' \
+    typesense/docsearch-scraper"
