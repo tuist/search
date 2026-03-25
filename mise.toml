@@ -1,0 +1,39 @@
+[tools]
+ruby = "latest"
+fnox = "latest"
+
+[tasks.setup]
+description = "Install dependencies"
+run = "gem install kamal"
+
+[tasks.deploy]
+description = "Deploy TypeSense with Kamal"
+run = "fnox exec -- kamal deploy -c config/deploy.yml"
+
+[tasks.redeploy]
+description = "Redeploy without re-pushing the image"
+run = "fnox exec -- kamal redeploy -c config/deploy.yml"
+
+[tasks.logs]
+description = "Tail logs from TypeSense"
+run = "kamal app logs"
+
+[tasks."scrape"]
+description = "Run DocSearch scraper against TypeSense"
+run = """
+fnox exec -- docker run --rm \
+  -e TYPESENSE_API_KEY=$TYPESENSE_API_KEY \
+  -e TYPESENSE_HOST=search.tuist.dev \
+  -e TYPESENSE_PORT=443 \
+  -e TYPESENSE_PROTOCOL=https \
+  -e CONFIG="$(cat config/docsearch.json)" \
+  typesense/docsearch-scraper
+"""
+
+[tasks."secrets:edit"]
+description = "Edit encrypted secrets with fnox"
+run = "fnox tui"
+
+[tasks."secrets:list"]
+description = "List all secrets"
+run = "fnox list"

@@ -1,0 +1,7 @@
+[providers.default]
+type = "age"
+recipients = ["age1jfpyw4at84wl4p5l9j3kmtdfvyryq95mw6qyj3ktfcktt7klmsjscl2azv"]
+key_file = "~/.config/fnox/tuist-search-age.txt"
+
+[secrets]
+TYPESENSE_API_KEY= { provider = "default", value = "YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBtL0MrL0ptanJnbmJoeW5Dc2syV0w0a2lRcEtwcUUxZEQ2VFI1SWZESWswCnAyQndtNDBYSlg4VUpxeGI5TGxPQks0dTd4SlpyNU9mV0gxUnlJTzEydk0KLT4gRkYwYDRtLWdyZWFzZSAqQHt8fkVVIFgqSW0KZitmWmRHS25LblJEOWErOWh6ZWphRnFjNkh6RVhXQ1RKZDdxZHVBUDFHbFZhQ3czNVJDcU54d0FVYWxrZ3I1Vwp5cGRxZ0RPcC8rZ25IenJFcFZDUTNzSGpNdXlUSUEKLS0tIDNybm9IUFBzYWJiUWU3S2haSWQvL2MwL1ZsWXp0Tm92ZXRrTkE1UU4rTWMKF/+S6fTFzD+Yl5f0fJkBKZfttEToyHkCjX+JQCRJTah7lYvQkqxGL5/5c4q6NFFnMEpwrbE7S7s4D+Nr5wHnsHJgm4kC3lVbIK59DuYkZ6foiK9mW4pmJ3cNgNtvXGAD" }
