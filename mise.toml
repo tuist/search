@@ -30,6 +30,10 @@ run = "bin/scrape-cron"
 description = "Index ProjectDescription DocC into TypeSense"
 run = "bin/index-docc"
 
+[tasks."index:github"]
+description = "Index GitHub issues and PRs into TypeSense"
+run = "bin/index-github"
+
 [tasks."secrets:edit"]
 description = "Edit encrypted secrets with fnox"
 run = "fnox tui"
