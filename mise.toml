@@ -26,6 +26,10 @@ run = "bin/scrape"
 description = "Install a daily cron job for the scraper on the server"
 run = "bin/scrape-cron"
 
+[tasks."index:docc"]
+description = "Index ProjectDescription DocC into TypeSense"
+run = "bin/index-docc"
+
 [tasks."secrets:edit"]
 description = "Edit encrypted secrets with fnox"
 run = "fnox tui"
