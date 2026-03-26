@@ -1,0 +1,28 @@
+{
+  "index_name": "github-issues",
+  "start_urls": [
+    {
+      "url": "https://github.com/tuist/tuist/issues",
+      "tags": ["issue"]
+    },
+    {
+      "url": "https://github.com/tuist/tuist/pulls",
+      "tags": ["pull-request"]
+    }
+  ],
+  "allowed_domains": ["github.com"],
+  "stop_urls": [
+    "https://github.com/tuist/tuist/(?!issues|pull).*",
+    "https://github.com/tuist/tuist/(issues|pulls)\\?.*"
+  ],
+  "selectors": {
+    "default": {
+      "lvl0": ".gh-header-title .js-issue-title",
+      "lvl1": ".markdown-body h2",
+      "lvl2": ".markdown-body h3",
+      "text": ".markdown-body p, .markdown-body li"
+    }
+  },
+  "scrape_start_urls": true,
+  "strip_chars": " .,;:#"
+}

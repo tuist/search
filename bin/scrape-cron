@@ -3,9 +3,11 @@ set -euo pipefail
 
 TYPESENSE_API_KEY=$(fnox get TYPESENSE_API_KEY)
 
-# Upload config and API key to server (restricted permissions)
+# Upload configs and API key to server (restricted permissions)
 ssh root@91.99.179.13 "mkdir -p /opt/docsearch && chmod 700 /opt/docsearch"
-scp config/docsearch.json root@91.99.179.13:/opt/docsearch/config.json
+scp config/docsearch.json root@91.99.179.13:/opt/docsearch/docsearch.json
+scp config/docsearch-github.json root@91.99.179.13:/opt/docsearch/docsearch-github.json
+scp config/docsearch-forum.json root@91.99.179.13:/opt/docsearch/docsearch-forum.json
 ssh root@91.99.179.13 "echo '${TYPESENSE_API_KEY}' > /opt/docsearch/.api_key && chmod 600 /opt/docsearch/.api_key"
 
 # Create runner script on server
@@ -14,14 +16,19 @@ ssh root@91.99.179.13 "cat > /opt/docsearch/run.sh" << 'REMOTE_SCRIPT'
 set -euo pipefail
 CONTAINER=$(docker ps --filter label=service=tuist-search --filter label=role=web --format '{{.Names}}' | head -1)
 TYPESENSE_API_KEY=$(cat /opt/docsearch/.api_key)
-CONFIG=$(cat /opt/docsearch/config.json)
-docker run --rm --network kamal --dns 8.8.8.8 \
-  -e TYPESENSE_API_KEY="$TYPESENSE_API_KEY" \
-  -e TYPESENSE_HOST="$CONTAINER" \
-  -e TYPESENSE_PORT=8108 \
-  -e TYPESENSE_PROTOCOL=http \
-  -e CONFIG="$CONFIG" \
-  typesense/docsearch-scraper
+
+for config_file in /opt/docsearch/docsearch*.json; do
+  echo "==> Scraping with ${config_file}..."
+  CONFIG=$(cat "$config_file")
+  docker run --rm --network kamal --dns 8.8.8.8 \
+    -e TYPESENSE_API_KEY="$TYPESENSE_API_KEY" \
+    -e TYPESENSE_HOST="$CONTAINER" \
+    -e TYPESENSE_PORT=8108 \
+    -e TYPESENSE_PROTOCOL=http \
+    -e CONFIG="$CONFIG" \
+    typesense/docsearch-scraper
+  echo "==> Done with ${config_file}"
+done
 REMOTE_SCRIPT
 ssh root@91.99.179.13 "chmod 700 /opt/docsearch/run.sh"
 
