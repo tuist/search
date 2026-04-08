@@ -9,7 +9,49 @@
       }
     },
     {
+      "url": "https://tuist.dev/en/docs/cli",
+      "tags": ["en"],
+      "variables": {
+        "locale": ["en"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/en/docs/references",
+      "tags": ["en"],
+      "variables": {
+        "locale": ["en"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/en/docs/contributors",
+      "tags": ["en"],
+      "variables": {
+        "locale": ["en"]
+      }
+    },
+    {
       "url": "https://tuist.dev/ko/docs",
+      "tags": ["ko"],
+      "variables": {
+        "locale": ["ko"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/ko/docs/cli",
+      "tags": ["ko"],
+      "variables": {
+        "locale": ["ko"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/ko/docs/references",
+      "tags": ["ko"],
+      "variables": {
+        "locale": ["ko"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/ko/docs/contributors",
       "tags": ["ko"],
       "variables": {
         "locale": ["ko"]
@@ -23,6 +65,27 @@
       }
     },
     {
+      "url": "https://tuist.dev/ja/docs/cli",
+      "tags": ["ja"],
+      "variables": {
+        "locale": ["ja"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/ja/docs/references",
+      "tags": ["ja"],
+      "variables": {
+        "locale": ["ja"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/ja/docs/contributors",
+      "tags": ["ja"],
+      "variables": {
+        "locale": ["ja"]
+      }
+    },
+    {
       "url": "https://tuist.dev/es/docs",
       "tags": ["es"],
       "variables": {
@@ -30,7 +93,49 @@
       }
     },
     {
+      "url": "https://tuist.dev/es/docs/cli",
+      "tags": ["es"],
+      "variables": {
+        "locale": ["es"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/es/docs/references",
+      "tags": ["es"],
+      "variables": {
+        "locale": ["es"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/es/docs/contributors",
+      "tags": ["es"],
+      "variables": {
+        "locale": ["es"]
+      }
+    },
+    {
       "url": "https://tuist.dev/ru/docs",
+      "tags": ["ru"],
+      "variables": {
+        "locale": ["ru"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/ru/docs/cli",
+      "tags": ["ru"],
+      "variables": {
+        "locale": ["ru"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/ru/docs/references",
+      "tags": ["ru"],
+      "variables": {
+        "locale": ["ru"]
+      }
+    },
+    {
+      "url": "https://tuist.dev/ru/docs/contributors",
       "tags": ["ru"],
       "variables": {
         "locale": ["ru"]
